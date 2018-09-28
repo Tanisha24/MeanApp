@@ -38,6 +38,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./config/passport')(passport);
+// Index Route
+app.get('/', (req, res) => {
+  res.send('invaild endpoint');
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
 
 //Set static folder
 app.use(express.static(path.join(__dirname,'public')));
