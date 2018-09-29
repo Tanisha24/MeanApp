@@ -768,6 +768,7 @@ var ProfileComponent = /** @class */ (function () {
         this.authService.getProfile().subscribe(function (profile) {
             _this.user = profile['user'];
             _this.refreshUserReviews();
+            console.log("In ngOnInit");
         }, function (err) {
             console.log(err);
             return false;
@@ -961,9 +962,9 @@ var AuthService = /** @class */ (function () {
         return this.http.post('users/authenticate', user).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) { return res; }));
     };
     AuthService.prototype.getProfile = function () {
-        //  console.log("In Auth service getProfile");
+        console.log("In Auth service getProfile");
         this.loadToken();
-        //  console.log("In AuthToken");
+        console.log("In AuthToken");
         //console.log(this.authToken);
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'Authorization': this.authToken, 'Content-Type': 'application/json' });
         return this.http.get('users/profile', { headers: headers }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) { return res; }));
@@ -1042,6 +1043,7 @@ var RecordService = /** @class */ (function () {
         return this.http.post('views', view).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res; }));
     };
     RecordService.prototype.getViewList = function () {
+        console.log("In get View List");
         return this.http.get('views');
     };
     RecordService.prototype.deleteUser = function (_id) {
