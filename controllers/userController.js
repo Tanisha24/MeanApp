@@ -9,6 +9,7 @@ const config = require('../config/database');
 
 //REGISTER
 router.post('/register',(req,res)=>{
+  console.log("In user controller registering users");
   let newUser = new User({
       name: req.body.name,
       email: req.body.email,
@@ -27,6 +28,7 @@ router.post('/register',(req,res)=>{
 
 // Authenticate
 router.post('/authenticate', (req, res) => {
+  console.log("In user controller authenticating views");
   const username = req.body.username;
   const password = req.body.password;
 
@@ -62,7 +64,7 @@ router.post('/authenticate', (req, res) => {
 
 // Profile
 router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res) => {
-  console.log("In Profile user controller");
+  console.log("In Profile user controller getting users");
   res.json({user: req.user});
 });
 
