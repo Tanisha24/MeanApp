@@ -6,7 +6,7 @@ const View = require('../models/view');
 const config = require('../config/database');
 var ObjectId = require('mongoose').Types.ObjectId;
 
-router.get('/',(req,res)=>{
+router.get('/show',(req,res)=>{
   View.find((err, docs)=>{
       console.log("In view controller getting views");
     if(!err)
@@ -17,7 +17,7 @@ router.get('/',(req,res)=>{
   })
 });
 
-router.post('/', (req, res) => {
+router.post('/record', (req, res) => {
   console.log("In view controller posting views");
     let newView = new View({
         username: req.body.username,
@@ -35,7 +35,7 @@ router.post('/', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/del/:id', (req, res) => {
   console.log("In view controller deleting views");
     if (!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No record with given id : ${req.params.id}`);
